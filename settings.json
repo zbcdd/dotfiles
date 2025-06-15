@@ -1,137 +1,21 @@
-// {
-//     "editor.fontFamily": "JetBrains Mono",
-//     "cmake.configureOnEdit": false,
-//     "cmake.configureOnOpen": false,
-//     "editor.fontSize": 18,
-//     "editor.tokenColorCustomizations": {
-//         "textMateRules": ["editor.tokenColorCustomizations"
-//             {
-//                 "scope": [
-//                     "entity.name.function.unused",
-//                     "entity.name.function.declaration.unused",
-//                     "entity.name.function.definition.unused"
-//                 ],
-//                 "settings": {
-//                     "foreground": "#808080"
-//                 }
-//             },
-//             {
-//                 "scope": "variable.other.property",
-//                 "settings": {
-//                     "foreground": "#5D1776"
-//                 }
-//             },
-//             {
-//                 "scope": "variable.other.readwrite",
-//                 "settings": {
-//                     "foreground": "#2980B9"
-//                 }
-//             },
-//             {
-//                 "scope": [
-//                     "keyword.control.directive.include.cpp",
-//                     "meta.preprocessor.include.cpp"
-//                 ],
-//                 "settings": {
-//                     "foreground": "#9a892e"
-//                 }
-//             },
-//             {
-//                 "scope": [
-//                     "string.quoted.other.lt-gt.include.cpp",
-//                     "string.quoted.other.lt-gt.include"
-//                 ],
-//                 "settings": {
-//                     "foreground": "#377B2A",
-//                     "fontStyle": "",
-//                     "textDecoration": "none"
-//                 }
-//             },
-//             {
-//                 "scope": [
-//                     "keyword.control",
-//                     "storage.type",
-//                     "storage.modifier",
-//                     "keyword.other"
-//                 ],
-//                 "settings": {
-//                     "foreground": "#1232ac"
-//                 }
-//             },
-//             {
-//                 "scope": [
-//                     "entity.name.function",
-//                     "entity.name.function.member"
-//                 ],
-//                 "settings": {
-//                     "foreground": "#286077"
-//                 }
-//             },
-//             {
-//                 "scope": [
-//                     "variable.parameter",
-//                     "variable.other",
-//                     "variable.name",
-//                     "support.type",
-//                     "support.constant",
-//                     "support.variable",
-//                     "support.function",
-//                     "support.class",
-//                     "support.other",
-//                     "constant.other",
-//                     "constant.language"
-//                 ],
-//                 "settings": {
-//                     "foreground": "#000000"
-//                 }
-//             },
-//             {
-//                 "scope": [
-//                     "string.quoted.double",
-//                     "string.quoted.single"
-//                 ],
-//                 "settings": {
-//                     "foreground": "#377B2A"
-//                 }
-//             },
-//             {
-//                 "scope": "constant.character.escape",
-//                 "settings": {
-//                     "foreground": "#1436a0"
-//                 }
-//             },
-//             {
-//                 "scope": "keyword.other.using",
-//                 "settings": {
-//                     "foreground": "#1232ac"
-//                 }
-//             },
-//             {
-//                 "scope": [
-//                     "comment",
-//                     "comment.block",
-//                     "comment.line",
-//                     "comment.block.documentation"
-//                 ],
-//                 "settings": {
-//                     "foreground": "#8c8c8c"
-//                 }
-//             }
-//         ]
-//     },
-//     "workbench.colorCustomizations": {
-//         "editor.lineHighlightBackground": "#fcfaef",
-//         "editor.selectionBackground": "#afd1fb",
-//         "editor.wordHighlightBackground": "#afd1fb",
-//         "editor.wordHighlightStrongBackground": "#afd1fb",
-//         "editorGutter.background": "#f2f2f2",
-//         "editor.lineHighlightBorder": "#fcfaef"
-//     },
-//     "editor.rulers": [120],
-//     "editor.underline": false,
-//     "editor.underlineLinks": false
-// }
 {
+    "clangd.path": "/usr/local/bin/clangd",
+    "clangd.onConfigChanged": "restart",
+    "clangd.arguments": [
+        "--clang-tidy", // 开启clang-tidy
+        "--all-scopes-completion", // 全代码库补全
+        "--completion-style=detailed", // 详细补全
+        "--header-insertion=iwyu", // "Include What You Use"策略自动插入头文件。
+        "--pch-storage=disk", // 如果内存够大可以关闭这个选项
+        "--log=info", // 日志级别
+        "--j=8", // 后台线程数，可根据机器配置自行调整
+        "--background-index", // 启用后台索引，clangd会在后台构建索引以提高响应速度。
+        "--compile-commands-dir=${workspaceFolder}/Frequency/build", //以飞流项目为例，生成的compile_command.json在build中，不管是clangd还是ccls都强依赖compile_command.json来构建索引
+        "--header-insertion-decorators"
+    ],
+    "[cpp]": {
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+    },
     "workbench.colorTheme": "Default Light Modern",
     "workbench.colorCustomizations": {
         "editor.lineHighlightBackground": "#fcfaee",
@@ -143,7 +27,7 @@
         120
     ],
     "editor.fontFamily": "JetBrains Mono",
-    "editor.fontSize": 30,
+    "editor.fontSize": 18,
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
